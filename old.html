@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADAi鸭 - 用心守护 每一刻温馨 | 日用百货一次性用品</title>
+    <meta name="description" content="ADAi鸭，您的日用百货贴心伙伴。优质一次性浴巾、毛巾、床品、内衣，用心守护每一刻温馨。">
+    <meta name="keywords" content="ADAi鸭,一次性浴巾,一次性毛巾,一次性床品,一次性内裤,日用百货">
+    <style>
+        /* ==================== 全局基础样式 ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* 主题色变量 */
+            --pink: #FFB6C1;
+            --pink-light: #FFD1DC;
+            --pink-dark: #FF9AAF;
+            --blue: #87CEEB;
+            --blue-light: #B0E0F0;
+            --blue-dark: #5BB5D5;
+            --yellow: #FFD700;
+            --yellow-light: #FFE44D;
+            --white: #FFFFFF;
+            --bg: #FFF9FA;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --shadow-sm: 0 2px 8px rgba(255, 182, 193, 0.2);
+            --shadow-md: 0 4px 20px rgba(135, 206, 235, 0.2);
+            --shadow-lg: 0 8px 40px rgba(255, 182, 193, 0.3);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            color: var(--text-primary);
+            background: var(--bg);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==================== 滚动条美化 ==================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--pink), var(--blue));
+            border-radius: 4px;
+        }
+
+        /* ==================== 通用动画 ==================== */
+        /* 滚动进入视口时的淡入上浮动画 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ==================== 导航栏 ==================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(255, 182, 193, 0.15);
+            padding: 10px 0;
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo样式 */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--pink), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        /* Logo鸭子SVG图标 */
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        /* 导航链接 */
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            position: relative;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--pink), var(--blue));
+            border-radius: 1px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--pink-dark);
+        }
+
+        /* 汉堡菜单按钮 */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* 汉堡菜单打开动画 */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* 移动端菜单 */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--pink-dark);
+            transform: scale(1.05);
+        }
+
+        /* ==================== Hero Section ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 24px 80px;
+        }
+
+        /* 渐变背景动画 */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, var(--pink-light), var(--blue-light), var(--yellow-light), var(--pink), var(--blue));
+            background-size: 400% 400%;
+            animation: gradientFlow 12s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 装饰性浮动元素 */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .float-item {
+            position: absolute;
+            opacity: 0.4;
+        }
+
+        /* 小星星 */
+        .star {
+            width: 0;
+            height: 0;
+        }
+        .star svg {
+            animation: floatStar 6s ease-in-out infinite;
+        }
+        .star:nth-child(2) svg { animation-delay: -1s; }
+        .star:nth-child(3) svg { animation-delay: -2s; }
+        .star:nth-child(4) svg { animation-delay: -3s; }
+        .star:nth-child(5) svg { animation-delay: -4s; }
+        .star:nth-child(6) svg { animation-delay: -5s; }
+
+        @keyframes floatStar {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+            25% { transform: translateY(-20px) rotate(10deg); opacity: 0.7; }
+            50% { transform: translateY(-10px) rotate(-5deg); opacity: 0.5; }
+            75% { transform: translateY(-25px) rotate(8deg); opacity: 0.6; }
+        }
+
+        /* 气泡 */
+        .bubble {
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: floatBubble 8s ease-in-out infinite;
+        }
+        .bubble:nth-child(8) { animation-delay: -2s; }
+        .bubble:nth-child(9) { animation-delay: -4s; }
+        .bubble:nth-child(10) { animation-delay: -6s; }
+
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            33% { transform: translateY(-30px) scale(1.1); opacity: 0.5; }
+            66% { transform: translateY(-15px) scale(0.95); opacity: 0.35; }
+        }
+
+        /* Hero内容 */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        /* 吉祥物鸭子 */
+        .mascot-container {
+            margin-bottom: 24px;
+            animation: mascotBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes mascotBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            margin-bottom: 40px;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        /* CTA按钮 */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: var(--white);
+            color: var(--pink-dark);
+            font-size: 1.05rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 182, 193, 0.4);
+            background: linear-gradient(135deg, var(--white), var(--pink-light));
+        }
+
+        .cta-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ==================== 通用Section样式 ==================== */
+        .section {
+            padding: 100px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--pink), var(--blue));
+            border-radius: 2px;
+            margin: 12px auto 0;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==================== 产品中心 ==================== */
+        .products {
+            background: var(--white);
+        }
+
+        /* 产品分类标签 */
+        .product-category {
+            text-align: center;
+            margin-bottom: 16px;
+            margin-top: 48px;
+        }
+
+        .product-category:first-of-type {
+            margin-top: 0;
+        }
+
+        .category-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 24px;
+            background: linear-gradient(135deg, var(--pink-light), var(--blue-light));
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+        }
+
+        /* 产品网格 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        /* 产品卡片 */
+        .product-card {
+            background: var(--white);
+            border: 2px solid rgba(255, 182, 193, 0.15);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.05), rgba(135, 206, 235, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--pink);
+            box-shadow: 0 8px 30px rgba(255, 182, 193, 0.3), 0 0 20px rgba(135, 206, 235, 0.15);
+        }
+
+        /* 产品图标容器 */
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(135, 206, 235, 0.15));
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-icon {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.25), rgba(135, 206, 235, 0.25));
+            transform: scale(1.08);
+        }
+
+        .product-icon svg {
+            width: 42px;
+            height: 42px;
+        }
+
+        /* 产品名称 */
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .product-name-en {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        /* 产品规格 */
+        .product-spec {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        /* 产品标签 */
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .product-tag {
+            display: inline-block;
+            padding: 3px 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--pink-light), var(--blue-light));
+            color: var(--text-secondary);
+        }
+
+        /* ==================== 服务理念 ==================== */
+        .services {
+            background: var(--bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.08), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .services::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(135, 206, 235, 0.08), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 182, 193, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .service-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .service-icon.quality {
+            background: linear-gradient(135deg, #FFB6C1, #FF9AAF);
+        }
+        .service-icon.care {
+            background: linear-gradient(135deg, #87CEEB, #5BB5D5);
+        }
+        .service-icon.convenient {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+        .service-icon.eco {
+            background: linear-gradient(135deg, #98FB98, #66CDAA);
+        }
+
+        .service-icon svg {
+            width: 34px;
+            height: 34px;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ==================== 关于我们 ==================== */
+        .about {
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-story {
+            padding: 28px;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.08), rgba(135, 206, 235, 0.08));
+            border-radius: var(--radius);
+            border-left: 4px solid var(--pink);
+        }
+
+        .about-story p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 0 !important;
+        }
+
+        /* 数据亮点 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .stat-item {
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            padding: 28px 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--pink), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        /* ==================== 联系我们 ==================== */
+        .contact {
+            background: var(--bg);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink-light), var(--blue-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-item-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .contact-item-text strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        /* 留言表单 */
+        .contact-form h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 182, 193, 0.2);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            background: var(--white);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--pink);
+            box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.15);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--pink), var(--blue));
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(255, 182, 193, 0.35);
+        }
+
+        /* ==================== 页脚 ==================== */
+        .footer {
+            background: linear-gradient(135deg, #333, #444);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 48px 24px 24px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-brand .logo-icon svg {
+            fill: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--pink);
+        }
+
+        /* 社交媒体图标 */
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: var(--pink);
+            transform: translateY(-3px);
+        }
+
+        .social-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 32px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ==================== 响应式适配 ==================== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding: 100px 20px 60px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section {
+                padding: 70px 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 16px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .stat-item {
+                padding: 20px 16px;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .product-card {
+                padding: 22px 18px;
+            }
+
+            .product-icon {
+                width: 64px;
+                height: 64px;
+            }
+
+            .product-icon svg {
+                width: 34px;
+                height: 34px;
+            }
+
+            .mascot-container svg {
+                width: 140px;
+                height: 140px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ==================== 回到顶部按钮 ==================== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, var(--pink), var(--blue));
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(255, 182, 193, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(255, 182, 193, 0.4);
+        }
+
+        .back-to-top svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 导航栏 ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <!-- Logo -->
+            <a href="#hero" class="logo">
+                <div class="logo-icon">
+                    <!-- 鸭子Logo SVG -->
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 身体 -->
+                        <ellipse cx="50" cy="62" rx="30" ry="25" fill="#FFD700"/>
+                        <!-- 头部 -->
+                        <circle cx="52" cy="38" r="18" fill="#FFE44D"/>
+                        <!-- 眼睛 -->
+                        <circle cx="57" cy="34" r="4" fill="#333"/>
+                        <circle cx="58" cy="33" r="1.5" fill="#fff"/>
+                        <!-- 嘴巴 -->
+                        <ellipse cx="68" cy="40" rx="8" ry="4" fill="#FF9AAF"/>
+                        <!-- 翅膀 -->
+                        <ellipse cx="35" cy="58" rx="12" ry="18" fill="#FFCC00" transform="rotate(-15 35 58)"/>
+                        <!-- 腮红 -->
+                        <ellipse cx="46" cy="42" rx="5" ry="3" fill="#FFB6C1" opacity="0.5"/>
+                    </svg>
+                </div>
+                ADAi鸭
+            </a>
+
+            <!-- 桌面导航链接 -->
+            <ul class="nav-links">
+                <li><a href="#hero">首页</a></li>
+                <li><a href="#products">产品中心</a></li>
+                <li><a href="#services">服务理念</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+
+            <!-- 汉堡菜单按钮 -->
+            <button class="hamburger" id="hamburger" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#hero" class="mobile-link">首页</a>
+        <a href="#products" class="mobile-link">产品中心</a>
+        <a href="#services" class="mobile-link">服务理念</a>
+        <a href="#about" class="mobile-link">关于我们</a>
+        <a href="#contact" class="mobile-link">联系我们</a>
+    </div>
+
+    <!-- ==================== Hero Section ==================== -->
+    <section class="hero" id="hero">
+        <!-- 渐变背景 -->
+        <div class="hero-bg"></div>
+
+        <!-- 浮动装饰元素 -->
+        <div class="floating-elements">
+            <!-- 小星星 -->
+            <div class="float-item star" style="top:12%;left:8%;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></svg>
+            </div>
+            <div class="float-item star" style="top:20%;right:12%;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFB6C1"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></svg>
+            </div>
+            <div class="float-item star" style="top:60%;left:5%;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#87CEEB"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></svg>
+            </div>
+            <div class="float-item star" style="top:70%;right:8%;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></svg>
+            </div>
+            <div class="float-item star" style="top:35%;left:18%;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFB6C1"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></svg>
+            </div>
+            <div class="float-item star" style="top:45%;right:15%;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#87CEEB"><polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"/></svg>
+            </div>
+
+            <!-- 气泡 -->
+            <div class="float-item bubble" style="top:15%;left:25%;width:30px;height:30px;"></div>
+            <div class="float-item bubble" style="top:50%;right:20%;width:20px;height:20px;"></div>
+            <div class="float-item bubble" style="bottom:20%;left:15%;width:25px;height:25px;"></div>
+        </div>
+
+        <!-- Hero内容 -->
+        <div class="hero-content">
+            <!-- 吉祥物鸭子 -->
+            <div class="mascot-container">
+                <svg width="180" height="180" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 身体阴影 -->
+                    <ellipse cx="100" cy="178" rx="45" ry="8" fill="rgba(0,0,0,0.06)"/>
+                    <!-- 身体 -->
+                    <ellipse cx="100" cy="140" rx="50" ry="42" fill="#FFD700"/>
+                    <!-- 肚子 -->
+                    <ellipse cx="100" cy="148" rx="32" ry="28" fill="#FFE44D"/>
+                    <!-- 头部 -->
+                    <circle cx="100" cy="82" r="34" fill="#FFE44D"/>
+                    <!-- 左眼 -->
+                    <circle cx="112" cy="76" r="7" fill="#333"/>
+                    <circle cx="114" cy="74" r="2.5" fill="#fff"/>
+                    <!-- 右眼(微微闭) -->
+                    <path d="M80 76 Q86 72 92 76" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <!-- 嘴巴 -->
+                    <ellipse cx="130" cy="86" rx="14" ry="7" fill="#FF9AAF"/>
+                    <ellipse cx="130" cy="84" rx="14" ry="5" fill="#FFB6C1"/>
+                    <!-- 腮红 -->
+                    <ellipse cx="88" cy="90" rx="8" ry="5" fill="#FFB6C1" opacity="0.5"/>
+                    <!-- 左翅膀 -->
+                    <ellipse cx="56" cy="130" rx="18" ry="28" fill="#FFCC00" transform="rotate(-10 56 130)"/>
+                    <!-- 右翅膀(挥手) -->
+                    <g transform="translate(145, 95) rotate(15)">
+                        <ellipse cx="0" cy="0" rx="14" ry="22" fill="#FFCC00"/>
+                    </g>
+                    <!-- 小皇冠 -->
+                    <g transform="translate(100, 48)">
+                        <polygon points="-12,0 -8,-14 -4,-4 0,-18 4,-4 8,-14 12,0" fill="#FFD700" stroke="#FFA500" stroke-width="1"/>
+                        <circle cx="0" cy="-10" r="2" fill="#FF9AAF"/>
+                        <circle cx="-7" cy="-6" r="1.5" fill="#87CEEB"/>
+                        <circle cx="7" cy="-6" r="1.5" fill="#87CEEB"/>
+                    </g>
+                    <!-- 脚 -->
+                    <ellipse cx="85" cy="178" rx="12" ry="5" fill="#FF9AAF"/>
+                    <ellipse cx="115" cy="178" rx="12" ry="5" fill="#FF9AAF"/>
+                </svg>
+            </div>
+            <h1 class="hero-title">用心守护 每一刻温馨</h1>
+            <p class="hero-subtitle">ADAi鸭 - 您的日用百货贴心伙伴</p>
+            <a href="#products" class="cta-btn">
+                探索产品
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ==================== 产品中心 ==================== -->
+    <section class="section products" id="products">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">我们的产品</h2>
+                <p class="section-subtitle">精选一次性日用品，让生活更便捷、更温馨</p>
+            </div>
+
+            <!-- 毛巾类产品分类 -->
+            <div class="product-category fade-in-up">
+                <span class="category-tag">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                    一次性毛巾类
+                </span>
+            </div>
+
+            <div class="product-grid">
+                <!-- 产品1: 一次性浴巾套装 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="40" height="28" rx="4" fill="none" stroke="#FFB6C1" stroke-width="2.5"/>
+                            <rect x="14" y="14" width="16" height="20" rx="2" fill="#FFD1DC" opacity="0.5"/>
+                            <rect x="32" y="14" width="14" height="20" rx="2" fill="#B0E0F0" opacity="0.5"/>
+                            <path d="M18 38v6M30 38v6M42 38v6" stroke="#FFB6C1" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="48" cy="14" r="3" fill="#FFD700"/>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性浴巾套装</h3>
+                    <p class="product-name-en">Bath Towel Set</p>
+                    <p class="product-spec">70x140mm浴巾 + 30x60mm毛巾</p>
+                    <div class="product-tags">
+                        <span class="product-tag">加厚款</span>
+                        <span class="product-tag">组合装</span>
+                    </div>
+                </div>
+
+                <!-- 产品2: 一次性浴巾 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="12" width="44" height="30" rx="5" fill="none" stroke="#87CEEB" stroke-width="2.5"/>
+                            <path d="M12 18h36v6H12z" fill="#B0E0F0" opacity="0.4"/>
+                            <path d="M12 28h36v4H12z" fill="#B0E0F0" opacity="0.3"/>
+                            <circle cx="48" cy="12" r="4" fill="#FFD700" opacity="0.6"/>
+                            <path d="M15 42v6M30 42v6M45 42v6" stroke="#87CEEB" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性浴巾</h3>
+                    <p class="product-name-en">Bath Towel</p>
+                    <p class="product-spec">70x140mm</p>
+                    <div class="product-tags">
+                        <span class="product-tag">大尺寸</span>
+                        <span class="product-tag">柔软亲肤</span>
+                    </div>
+                </div>
+
+                <!-- 产品3: 一次性毛巾 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="14" width="36" height="26" rx="4" fill="none" stroke="#FFB6C1" stroke-width="2.5"/>
+                            <path d="M16 20h28v4H16z" fill="#FFD1DC" opacity="0.5"/>
+                            <path d="M16 28h28v4H16z" fill="#FFD1DC" opacity="0.3"/>
+                            <path d="M20 40v4M30 40v4M40 40v4" stroke="#FFB6C1" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M46 14l4-4M50 10l2 2" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性毛巾</h3>
+                    <p class="product-name-en">Towel</p>
+                    <p class="product-spec">30x60mm</p>
+                    <div class="product-tags">
+                        <span class="product-tag">便携</span>
+                        <span class="product-tag">独立包装</span>
+                    </div>
+                </div>
+
+                <!-- 产品4: 一次性压缩毛巾 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="16" fill="none" stroke="#87CEEB" stroke-width="2.5"/>
+                            <circle cx="30" cy="30" r="10" fill="#B0E0F0" opacity="0.3"/>
+                            <circle cx="30" cy="30" r="5" fill="#87CEEB" opacity="0.3"/>
+                            <path d="M24 14 Q20 10 24 6" stroke="#FFB6C1" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                            <path d="M36 14 Q40 10 36 6" stroke="#FFB6C1" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                            <text x="30" y="34" text-anchor="middle" font-size="8" fill="#5BB5D5" font-weight="bold">5片</text>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性压缩毛巾</h3>
+                    <p class="product-name-en">Compressed Towel</p>
+                    <p class="product-spec">30x60mm | 5片装</p>
+                    <div class="product-tags">
+                        <span class="product-tag">压缩便携</span>
+                        <span class="product-tag">遇水即开</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 床品类+内衣类产品分类 -->
+            <div class="product-category fade-in-up" style="margin-top:56px;">
+                <span class="category-tag">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    一次性床品及内衣类
+                </span>
+            </div>
+
+            <div class="product-grid">
+                <!-- 产品5: 一次性四件套 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="18" width="48" height="24" rx="3" fill="none" stroke="#FFB6C1" stroke-width="2.5"/>
+                            <rect x="6" y="18" width="20" height="24" rx="3" fill="#FFD1DC" opacity="0.3"/>
+                            <rect x="10" y="8" width="18" height="12" rx="3" fill="none" stroke="#87CEEB" stroke-width="2"/>
+                            <rect x="10" y="8" width="18" height="12" rx="3" fill="#B0E0F0" opacity="0.3"/>
+                            <circle cx="48" cy="16" r="3" fill="#FFD700" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性四件套</h3>
+                    <p class="product-name-en">Bedding Set 4-piece</p>
+                    <p class="product-spec">床单220x240cm | 被套220x240cm | 枕套50x80cm</p>
+                    <div class="product-tags">
+                        <span class="product-tag">全套搭配</span>
+                        <span class="product-tag">品质面料</span>
+                    </div>
+                </div>
+
+                <!-- 产品6: 一次性三件套 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="20" width="40" height="20" rx="3" fill="none" stroke="#87CEEB" stroke-width="2.5"/>
+                            <rect x="10" y="20" width="40" height="20" rx="3" fill="#B0E0F0" opacity="0.2"/>
+                            <rect x="14" y="10" width="16" height="12" rx="3" fill="none" stroke="#FFB6C1" stroke-width="2"/>
+                            <rect x="14" y="10" width="16" height="12" rx="3" fill="#FFD1DC" opacity="0.3"/>
+                            <path d="M34 14h8v8h-8z" rx="2" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性三件套</h3>
+                    <p class="product-name-en">Bedding Set 3-piece</p>
+                    <p class="product-spec">床单180x230cm | 被套150x220cm | 枕套50x80cm</p>
+                    <div class="product-tags">
+                        <span class="product-tag">经济实惠</span>
+                        <span class="product-tag">独立包装</span>
+                    </div>
+                </div>
+
+                <!-- 产品7: 一次性单人床单 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="16" width="44" height="28" rx="4" fill="none" stroke="#FFB6C1" stroke-width="2.5"/>
+                            <path d="M8 22h44v4H8z" fill="#FFD1DC" opacity="0.4"/>
+                            <path d="M8 30h44v4H8z" fill="#FFD1DC" opacity="0.3"/>
+                            <path d="M8 38h44v2H8z" fill="#FFD1DC" opacity="0.2"/>
+                            <path d="M16 10v6M30 10v6M44 10v6" stroke="#87CEEB" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性单人床单</h3>
+                    <p class="product-name-en">Single Bed Sheet</p>
+                    <p class="product-spec">180x230cm</p>
+                    <div class="product-tags">
+                        <span class="product-tag">单人尺寸</span>
+                        <span class="product-tag">即用即弃</span>
+                    </div>
+                </div>
+
+                <!-- 产品8: 一次性双人床单 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="14" width="50" height="30" rx="4" fill="none" stroke="#87CEEB" stroke-width="2.5"/>
+                            <path d="M5 20h50v4H5z" fill="#B0E0F0" opacity="0.4"/>
+                            <path d="M5 28h50v4H5z" fill="#B0E0F0" opacity="0.3"/>
+                            <path d="M5 36h50v2H5z" fill="#B0E0F0" opacity="0.2"/>
+                            <circle cx="52" cy="14" r="4" fill="#FFD700" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性双人床单</h3>
+                    <p class="product-name-en">Double Bed Sheet</p>
+                    <p class="product-spec">220x240cm</p>
+                    <div class="product-tags">
+                        <span class="product-tag">双人尺寸</span>
+                        <span class="product-tag">加宽设计</span>
+                    </div>
+                </div>
+
+                <!-- 产品9: 一次性枕套 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="16" width="36" height="24" rx="5" fill="none" stroke="#FFB6C1" stroke-width="2.5"/>
+                            <rect x="12" y="16" width="36" height="24" rx="5" fill="#FFD1DC" opacity="0.2"/>
+                            <path d="M18 20h24v16H18z" rx="3" fill="none" stroke="#87CEEB" stroke-width="1.5" opacity="0.4"/>
+                            <text x="30" y="34" text-anchor="middle" font-size="7" fill="#FF9AAF" font-weight="bold">x2</text>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性枕套</h3>
+                    <p class="product-name-en">Pillowcase</p>
+                    <p class="product-spec">50x80cm | 2片装</p>
+                    <div class="product-tags">
+                        <span class="product-tag">2片装</span>
+                        <span class="product-tag">亲肤透气</span>
+                    </div>
+                </div>
+
+                <!-- 产品10: 一次性男士内裤 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 24 Q20 16 30 16 Q40 16 44 24 L46 34 Q46 40 40 40 L20 40 Q14 40 14 34 Z" fill="none" stroke="#5BB5D5" stroke-width="2.5"/>
+                            <path d="M16 24 Q20 16 30 16 Q40 16 44 24 L46 34 Q46 40 40 40 L20 40 Q14 40 14 34 Z" fill="#B0E0F0" opacity="0.2"/>
+                            <path d="M24 16v-4M36 16v-4" stroke="#87CEEB" stroke-width="2" stroke-linecap="round"/>
+                            <text x="30" y="34" text-anchor="middle" font-size="7" fill="#5BB5D5" font-weight="bold">L</text>
+                            <text x="30" y="52" text-anchor="middle" font-size="6" fill="#999">x2</text>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性男士内裤</h3>
+                    <p class="product-name-en">Men's Briefs</p>
+                    <p class="product-spec">L码 | 2片装</p>
+                    <div class="product-tags">
+                        <span class="product-tag">男士专属</span>
+                        <span class="product-tag">透气舒适</span>
+                    </div>
+                </div>
+
+                <!-- 产品11: 一次性女士内裤 -->
+                <div class="product-card fade-in-up">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 26 Q22 18 30 18 Q38 18 42 26 L44 36 Q42 42 30 42 Q18 42 16 36 Z" fill="none" stroke="#FFB6C1" stroke-width="2.5"/>
+                            <path d="M18 26 Q22 18 30 18 Q38 18 42 26 L44 36 Q42 42 30 42 Q18 42 16 36 Z" fill="#FFD1DC" opacity="0.25"/>
+                            <!-- 蝴蝶结装饰 -->
+                            <path d="M26 18 Q30 14 34 18" fill="none" stroke="#FF9AAF" stroke-width="1.5"/>
+                            <circle cx="30" cy="16" r="2" fill="#FF9AAF"/>
+                            <text x="30" y="34" text-anchor="middle" font-size="7" fill="#FF9AAF" font-weight="bold">M</text>
+                            <text x="30" y="52" text-anchor="middle" font-size="6" fill="#999">x2</text>
+                        </svg>
+                    </div>
+                    <h3 class="product-name">一次性女士内裤</h3>
+                    <p class="product-name-en">Ladies' Briefs</p>
+                    <p class="product-spec">M码 | 2片装</p>
+                    <div class="product-tags">
+                        <span class="product-tag">女士专属</span>
+                        <span class="product-tag">柔肤无感</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 服务理念 ==================== -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">我们的服务理念</h2>
+                <p class="section-subtitle">以真心铸就品质，以服务传递温暖</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- 品质至上 -->
+                <div class="service-card fade-in-up">
+                    <div class="service-icon quality">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4L24 14H35L26 21L29 32L20 25L11 32L14 21L5 14H16L20 4Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">品质至上</h3>
+                    <p class="service-desc">甄选优质材料，每一件产品都经过严格检测，确保为您提供安全可靠的日用好物。</p>
+                </div>
+
+                <!-- 温馨守护 -->
+                <div class="service-card fade-in-up">
+                    <div class="service-icon care">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 35C20 35 4 24 4 14C4 8 8 4 14 4C17 4 19 5 20 8C21 5 23 4 26 4C32 4 36 8 36 14C36 24 20 35 20 35Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">温馨守护</h3>
+                    <p class="service-desc">关注每一个细节，为您的生活增添温暖。从选材到包装，处处体现对您的关怀。</p>
+                </div>
+
+                <!-- 便捷生活 -->
+                <div class="service-card fade-in-up">
+                    <div class="service-icon convenient">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="14" stroke="white" stroke-width="2.5"/>
+                            <path d="M20 12V20L26 24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">便捷生活</h3>
+                    <p class="service-desc">一次性使用，免去清洗烦恼，让生活更简单。旅行出差，随手一包，轻松出发。</p>
+                </div>
+
+                <!-- 绿色环保 -->
+                <div class="service-card fade-in-up">
+                    <div class="service-icon eco">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 36C20 36 8 26 8 16C8 10 12 6 18 6C19 6 20 8 20 8C20 8 21 6 22 6C28 6 32 10 32 16C32 26 20 36 20 36Z" fill="white"/>
+                            <path d="M20 12V30" stroke="#66CDAA" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M20 18L14 14" stroke="#66CDAA" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M20 22L26 18" stroke="#66CDAA" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">绿色环保</h3>
+                    <p class="service-desc">采用可降解材料，关爱地球家园。在享受便捷的同时，也为环境保护贡献一份力量。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 关于我们 ==================== -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">关于ADAi鸭</h2>
+                <p class="section-subtitle">用爱出发，温暖万家</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text fade-in-left">
+                    <p>
+                        ADAi鸭是一个专注于高品质一次性日用百货的品牌。我们深知，在快节奏的现代生活中，人们对便捷和品质有着双重追求。因此，我们致力于将温暖与实用完美结合，打造出让每一位用户都安心使用的产品。
+                    </p>
+                    <div class="about-story">
+                        <p>
+                            ADAi鸭的故事始于一个简单的愿望：让每一次出行都更加从容。我们的创始人发现，旅途中的洗漱用品往往品质参差不齐，于是决定从源头把控，甄选最优质的材料，打造属于中国人自己的一次性日用品品牌。从最初的一款浴巾，到如今涵盖毛巾、床品、内衣等全品类产品线，ADAi鸭始终坚持"用心守护每一刻温馨"的品牌理念，陪伴千万用户走过每一段旅程。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stats-grid fade-in-right">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">+ 产品种类</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="10000">0</div>
+                        <div class="stat-label">+ 满意客户</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label">+ 城市覆盖</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="99">0</div>
+                        <div class="stat-label">% 好评率</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 联系我们 ==================== -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">联系我们</h2>
+                <p class="section-subtitle">期待您的来信，我们将竭诚为您服务</p>
+            </div>
+
+            <div class="contact-content">
+                <!-- 联系信息 -->
+                <div class="contact-info fade-in-left">
+                    <h3>联系方式</h3>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#FF9AAF" stroke-width="2" stroke-linecap="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <strong>电话</strong>
+                            400-888-ADAi (2334)
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#FF9AAF" stroke-width="2" stroke-linecap="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <strong>邮箱</strong>
+                            hello@adai-duck.com
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#FF9AAF" stroke-width="2" stroke-linecap="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <strong>地址</strong>
+                            中国广东省深圳市南山区科技园ADAi大厦
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#FF9AAF" stroke-width="2" stroke-linecap="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <strong>工作时间</strong>
+                            周一至周五 9:00-18:00
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 留言表单 -->
+                <div class="contact-form fade-in-right">
+                    <h3>在线留言</h3>
+                    <form id="contactForm" onsubmit="return false;">
+                        <div class="form-group">
+                            <label>您的姓名</label>
+                            <input type="text" placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label>联系邮箱</label>
+                            <input type="email" placeholder="请输入您的邮箱地址">
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <input type="tel" placeholder="请输入您的联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label>留言内容</label>
+                            <textarea placeholder="请输入您想告诉我们的内容..."></textarea>
+                        </div>
+                        <button type="button" class="submit-btn" id="submitBtn">
+                            提交留言
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- 品牌 -->
+            <div class="footer-brand">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="62" rx="30" ry="25" fill="#FFD700"/>
+                        <circle cx="52" cy="38" r="18" fill="#FFE44D"/>
+                        <circle cx="57" cy="34" r="4" fill="#333"/>
+                        <circle cx="58" cy="33" r="1.5" fill="#fff"/>
+                        <ellipse cx="68" cy="40" rx="8" ry="4" fill="#FF9AAF"/>
+                        <ellipse cx="35" cy="58" rx="12" ry="18" fill="#FFCC00" transform="rotate(-15 35 58)"/>
+                        <ellipse cx="46" cy="42" rx="5" ry="3" fill="#FFB6C1" opacity="0.5"/>
+                    </svg>
+                </div>
+                ADAi鸭
+            </div>
+
+            <!-- 链接 -->
+            <div class="footer-links">
+                <a href="#hero">首页</a>
+                <a href="#products">产品中心</a>
+                <a href="#services">服务理念</a>
+                <a href="#about">关于我们</a>
+                <a href="#contact">联系我们</a>
+            </div>
+
+            <!-- 社交媒体 -->
+            <div class="social-icons">
+                <!-- 微信 -->
+                <div class="social-icon" title="微信">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM12 2C6.48 2 2 5.82 2 10.5c0 2.73 1.56 5.17 4 6.72V21l3.5-2.04c.79.15 1.63.24 2.5.24.08 0 .16 0 .24-.01A5.8 5.8 0 0 1 12 16c-3.31 0-6-2.24-6-5s2.69-5 6-5 6 2.24 6 5c0 .5-.09.98-.24 1.43A6 6 0 0 1 18 16h.5c3.59 0 6.5-2.46 6.5-5.5S21.59 5 18 5c-.85 0-1.65.15-2.38.41C14.48 3.16 13.35 2 12 2z"/>
+                    </svg>
+                </div>
+                <!-- 微博 -->
+                <div class="social-icon" title="微博">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.09 18.09c-3.27.35-6.09-1.15-6.3-3.35-.21-2.2 2.3-4.32 5.57-4.67 3.27-.35 6.09 1.15 6.3 3.35.21 2.2-2.3 4.32-5.57 4.67zM20 9c0-3.87-3.13-7-7-7S6 5.13 6 9c0 1.93.78 3.68 2.05 4.95"/>
+                        <circle cx="20" cy="4" r="1.5"/>
+                    </svg>
+                </div>
+                <!-- 抖音 -->
+                <div class="social-icon" title="抖音">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.6 5.82C15.28 4.5 13.78 4 12 4V2h-2v14c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .39.03.57.08V12c-.19-.01-.38-.02-.57-.02-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V8.82C14.4 10.19 16.05 11 18 11V9c-1.1 0-2-.9-2-2 0-.07.01-.13.02-.19l-.42.01z"/>
+                    </svg>
+                </div>
+                <!-- 小红书 -->
+                <div class="social-icon" title="小红书">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ADAi鸭 版权所有 | 用心守护 每一刻温馨</p>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+        </svg>
+    </button>
+
+    <!-- ==================== JavaScript ==================== -->
+    <script>
+        // ==================== 导航栏滚动效果 ====================
+        const navbar = document.getElementById('navbar');
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function() {
+            // 导航栏滚动后添加毛玻璃效果
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // 回到顶部按钮显示/隐藏
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // 回到顶部点击事件
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==================== 汉堡菜单 ====================
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            // 禁止背景滚动
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // 移动端菜单链接点击后关闭菜单
+        mobileLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // ==================== IntersectionObserver 滚动动画 ====================
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // 如果是数字递增元素，启动动画
+                    if (entry.target.querySelector('.stat-number')) {
+                        animateNumbers(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // 监听所有需要动画的元素
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(function(el) {
+            observer.observe(el);
+        });
+
+        // ==================== 数字递增动画 ====================
+        function animateNumbers(container) {
+            const statNumbers = container.querySelectorAll('.stat-number');
+            statNumbers.forEach(function(numEl) {
+                const target = parseInt(numEl.getAttribute('data-target'));
+                if (numEl.dataset.animated) return; // 防止重复动画
+                numEl.dataset.animated = 'true';
+
+                const duration = 2000; // 动画持续时间2秒
+                const startTime = performance.now();
+
+                function updateNumber(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+
+                    // 使用easeOutQuart缓动函数
+                    const eased = 1 - Math.pow(1 - progress, 4);
+                    const current = Math.floor(eased * target);
+
+                    numEl.textContent = current;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        numEl.textContent = target;
+                    }
+                }
+
+                requestAnimationFrame(updateNumber);
+            });
+        }
+
+        // ==================== 表单提交提示 ====================
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const btn = this;
+            const originalText = btn.innerHTML;
+
+            // 按钮状态变化
+            btn.innerHTML = '提交中...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+
+            // 模拟提交延迟
+            setTimeout(function() {
+                btn.innerHTML = '提交成功!';
+                btn.style.background = 'linear-gradient(135deg, #98FB98, #66CDAA)';
+                btn.style.opacity = '1';
+
+                // 1.5秒后恢复按钮状态
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                    btn.style.background = 'linear-gradient(135deg, var(--pink), var(--blue))';
+                    btn.style.pointerEvents = 'auto';
+                    // 清空表单
+                    document.getElementById('contactForm').querySelectorAll('input, textarea').forEach(function(field) {
+                        field.value = '';
+                    });
+                }, 1500);
+            }, 800);
+        });
+
+        // ==================== 导航栏活跃链接高亮 ====================
+        const sections = document.querySelectorAll('section[id]');
+        const navLinksDesktop = document.querySelectorAll('.nav-links a');
+        const navLinksMobile = document.querySelectorAll('.mobile-menu a');
+
+        function highlightNav() {
+            const scrollPos = window.scrollY + 100;
+
+            sections.forEach(function(section) {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+
+                if (scrollPos >= top && scrollPos < top + height) {
+                    // 桌面导航
+                    navLinksDesktop.forEach(function(link) {
+                        link.style.color = '';
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.style.color = '#FF9AAF';
+                        }
+                    });
+                    // 移动端导航
+                    navLinksMobile.forEach(function(link) {
+                        link.style.color = '';
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.style.color = '#FF9AAF';
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightNav);
+        highlightNav(); // 初始化
+
+        // ==================== 页面加载完成后的初始动画 ====================
+        window.addEventListener('load', function() {
+            // 延迟一帧后检查首屏元素
+            requestAnimationFrame(function() {
+                document.querySelectorAll('.hero .hero-content').forEach(function(el) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // ==================== 产品卡片鼠标跟随光效（桌面端） ====================
+        if (window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.product-card').forEach(function(card) {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', x + 'px');
+                    card.style.setProperty('--mouse-y', y + 'px');
+                });
+            });
+
+            // 动态添加鼠标光效CSS
+            const glowStyle = document.createElement('style');
+            glowStyle.textContent = `
+                .product-card::after {
+                    content: '';
+                    position: absolute;
+                    top: var(--mouse-y, 50%);
+                    left: var(--mouse-x, 50%);
+                    width: 200px;
+                    height: 200px;
+                    background: radial-gradient(circle, rgba(255,182,193,0.12), transparent 60%);
+                    transform: translate(-50%, -50%);
+                    pointer-events: none;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                }
+                .product-card:hover::after {
+                    opacity: 1;
+                }
+            `;
+            document.head.appendChild(glowStyle);
+        }
+    </script>
+</body>
+</html>
