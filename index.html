@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>adai
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>adai - 温暖每一天，品质生活</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 加载动画 -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="duck-logo">🦆</div>
+            <h1>adai</h1>
+            <p class="loading-text">温暖加载中...</p>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-icon">🦆</span>
+                <span class="logo-text">adai</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">首页</a></li>
+                <li><a href="#products" class="nav-link">产品中心</a></li>
+                <li><a href="#features" class="nav-link">服务理念</a></li>
+                <li><a href="#about" class="nav-link">关于我们</a></li>
+                <li><a href="#contact" class="nav-link">联系我们</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 粒子背景容器 -->
+    <canvas id="particles" class="particles"></canvas>
+
+    <!-- 首页英雄区 -->
+    <section id="home" class="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text fade-in-up">
+                <h1 class="hero-title">
+                    <span class="title-line">温暖生活</span>
+                    <span class="title-line title-accent">从adai开始</span>
+                </h1>
+                <p class="hero-subtitle">高品质一次性日用品，让每一天都充满温馨与便利</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">探索产品</a>
+                    <a href="#features" class="btn btn-secondary">了解更多</a>
+                </div>
+            </div>
+            <div class="hero-visual fade-in-up delay-200">
+                <div class="hero-image-wrapper">
+                    <div class="floating-card card-1">
+                        <span class="card-icon">🧻</span>
+                        <span class="card-text">纸巾系列</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <span class="card-icon">🥤</span>
+                        <span class="card-text">杯具系列</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <span class="card-icon">🍽️</span>
+                        <span class="card-text">餐具系列</span>
+                    </div>
+                    <div class="hero-center-circle">
+                        <div class="center-duck">🦆</div>
+                        <div class="orbit-ring"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>向下滚动</p>
+        </div>
+    </section>
+
+    <!-- 数据统计区 -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">产品线数量</div>
+                </div>
+                <div class="stat-item fade-in-up delay-100">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">合作客户(万+)</div>
+                </div>
+                <div class="stat-item fade-in-up delay-200">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">满意度(%)</div>
+                </div>
+                <div class="stat-item fade-in-up delay-300">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">年行业经验</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品展示区 -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <span class="section-tag">PRODUCTS</span>
+                <h2 class="section-title">产品中心</h2>
+                <p class="section-desc">精选优质一次性日用品，为您的生活增添温馨与便利</p>
+            </div>
+            
+            <!-- 分类标签 -->
+            <div class="product-tabs fade-in-up delay-100">
+                <button class="tab-btn active" data-category="all">全部</button>
+                <button class="tab-btn" data-category="tissue">纸巾系列</button>
+                <button class="tab-btn" data-category="cup">杯具系列</button>
+                <button class="tab-btn" data-category="tableware">餐具系列</button>
+                <button class="tab-btn" data-category="cleaning">清洁用品</button>
+            </div>
+
+            <!-- 产品网格 -->
+            <div class="products-grid">
+                <div class="product-card fade-in-up" data-category="tissue">
+                    <div class="product-image">
+                        <div class="product-placeholder">🧻</div>
+                        <div class="product-badge">热销</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>adai柔肤抽纸</h3>
+                        <p class="product-desc">三层加厚，柔软亲肤，家庭必备</p>
+                        <div class="product-price">¥<span>29.9</span></div>
+                        <button class="btn-product">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in-up delay-100" data-category="cup">
+                    <div class="product-image">
+                        <div class="product-placeholder">☕</div>
+                        <div class="product-badge new">新品</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>adai保温杯</h3>
+                        <p class="product-desc">304不锈钢，长效保温保冷</p>
+                        <div class="product-price">¥<span>89.9</span></div>
+                        <button class="btn-product">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in-up delay-200" data-category="tableware">
+                    <div class="product-image">
+                        <div class="product-placeholder">🥢</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>adai一次性餐具套装</h3>
+                        <p class="product-desc">食品级材质，安全放心</p>
+                        <div class="product-price">¥<span>39.9</span></div>
+                        <button class="btn-product">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in-up" data-category="cleaning">
+                    <div class="product-image">
+                        <div class="product-placeholder">🧹</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>adai清洁湿巾</h3>
+                        <p class="product-desc">深层清洁，杀菌除螨</p>
+                        <div class="product-price">¥<span>19.9</span></div>
+                        <button class="btn-product">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in-up delay-100" data-category="tissue">
+                    <div class="product-image">
+                        <div class="product-placeholder">🧴</div>
+                        <div class="product-badge">爆款</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>adai洗手液</h3>
+                        <p class="product-desc">温和配方，持久留香</p>
+                        <div class="product-price">¥<span>24.9</span></div>
+                        <button class="btn-product">查看详情</button>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in-up delay-200" data-category="cup">
+                    <div class="product-image">
+                        <div class="product-placeholder">🥤</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>adai纸杯套装</h3>
+                        <p class="product-desc">食品级淋膜，耐高温</p>
+                        <div class="product-price">¥<span>15.9</span></div>
+                        <button class="btn-product">查看详情</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务理念区 -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <span class="section-tag">SERVICES</span>
+                <h2 class="section-title">服务理念</h2>
+                <p class="section-desc">我们坚持以客户为中心，用温暖的服务理念打造品质生活</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <div class="icon-circle">🌟</div>
+                    </div>
+                    <h3>品质至上</h3>
+                    <p>严格把控每一道生产工序，选用优质原材料，确保每一件产品都符合最高质量标准</p>
+                    <div class="feature-line"></div>
+                </div>
+
+                <div class="feature-card fade-in-up delay-100">
+                    <div class="feature-icon">
+                        <div class="icon-circle">💝</div>
+                    </div>
+                    <h3>温馨服务</h3>
+                    <p>像家人一样关心每一位客户，提供贴心的售前咨询和售后保障服务</p>
+                    <div class="feature-line"></div>
+                </div>
+
+                <div class="feature-card fade-in-up delay-200">
+                    <div class="feature-icon">
+                        <div class="icon-circle">♻️</div>
+                    </div>
+                    <h3>绿色环保</h3>
+                    <p>坚持可持续发展理念，采用环保材料和可降解工艺，守护地球家园</p>
+                    <div class="feature-line"></div>
+                </div>
+
+                <div class="feature-card fade-in-up delay-300">
+                    <div class="feature-icon">
+                        <div class="icon-circle">🚀</div>
+                    </div>
+                    <h3>快速配送</h3>
+                    <p>全国仓储布局，智能物流系统，确保订单最快24小时内送达您的手中</p>
+                    <div class="feature-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 品牌故事区 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in-up">
+                    <span class="section-tag">OUR STORY</span>
+                    <h2 class="section-title">关于adai</h2>
+                    <p class="about-description">
+                        adai成立于2009年，是一家专注于高品质一次性日用品研发、生产和销售的企业。
+                        十五年来，我们始终秉持"温暖生活，从细节做起"的品牌理念，致力于为全球消费者提供
+                        安全、环保、便捷的生活用品。
+                    </p>
+                    <p class="about-description">
+                        从最初的纸巾产品起步，如今已发展成为涵盖纸巾、杯具、餐具、清洁用品等多品类的
+                        综合性日化品牌。我们的产品远销全球50多个国家和地区，深受消费者喜爱。
+                    </p>
+                    <div class="about-values">
+                        <div class="value-item">
+                            <span class="value-icon">🎯</span>
+                            <div>
+                                <h4>使命</h4>
+                                <p>让每个人都能享受高品质的便捷生活</p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">👁️</span>
+                            <div>
+                                <h4>愿景</h4>
+                                <p>成为全球最值得信赖的日用品牌</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual fade-in-up delay-200">
+                    <div class="about-image-grid">
+                        <div class="about-img about-img-1">🏭</div>
+                        <div class="about-img about-img-2">👨‍👩‍👧‍👦</div>
+                        <div class="about-img about-img-3">🌍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户评价区 -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <span class="section-tag">TESTIMONIALS</span>
+                <h2 class="section-title">客户心声</h2>
+                <p class="section-desc">听听我们的客户怎么说</p>
+            </div>
+            <div class="testimonials-slider fade-in-up delay-100">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"adai的纸巾真的超级柔软，家里一直在用，品质非常稳定！"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">李</div>
+                            <div>
+                                <h4>李女士</h4>
+                                <p>忠实用户5年</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"作为餐饮店主，adai的一次性餐具质量很好，客户反馈都很不错。"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">王</div>
+                            <div>
+                                <h4>王先生</h4>
+                                <p>餐饮合作伙伴</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"环保理念很打动我，包装简约但不失质感，支持adai！"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">张</div>
+                            <div>
+                                <h4>张女士</h4>
+                                <p>环保倡导者</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info fade-in-up">
+                    <span class="section-tag">CONTACT</span>
+                    <h2 class="section-title">联系我们</h2>
+                    <p class="contact-desc">期待与您建立合作关系，共创美好未来</p>
+                    
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h4>公司地址</h4>
+                                <p>浙江省义乌市adai工业园</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h4>联系电话</h4>
+                                <p>400-888-9999</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h4>电子邮箱</h4>
+                                <p>contact@adaiduck.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🕐</div>
+                            <div>
+                                <h4>工作时间</h4>
+                                <p>周一至周日 9:00-21:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper fade-in-up delay-200">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" placeholder="联系电话" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="电子邮箱">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="4" placeholder="请输入您的需求或建议..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">提交留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🦆</span>
+                        <span>adai</span>
+                    </div>
+                    <p>温暖生活，从adai开始</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>产品分类</h4>
+                        <a href="#">纸巾系列</a>
+                        <a href="#">杯具系列</a>
+                        <a href="#">餐具系列</a>
+                        <a href="#">清洁用品</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>关于我们</h4>
+                        <a href="#">品牌故事</a>
+                        <a href="#">企业文化</a>
+                        <a href="#">新闻动态</a>
+                        <a href="#">加入我们</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>客户服务</h4>
+                        <a href="#">常见问题</a>
+                        <a href="#">售后服务</a>
+                        <a href="#">配送说明</a>
+                        <a href="#">隐私政策</a>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <h4>关注我们</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" title="微信">💬</a>
+                        <a href="#" class="social-icon" title="微博">📱</a>
+                        <a href="#" class="social-icon" title="抖音">🎵</a>
+                        <a href="#" class="social-icon" title="小红书">📕</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 adai. All Rights Reserved. | 浙ICP备XXXXXXXX号</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" aria-label="返回顶部">
+        <span>↑</span>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
